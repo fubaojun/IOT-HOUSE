@@ -162,11 +162,11 @@ public class EspBaseApiUtil
      * 
      * @return the list of @see IOTAddress
      */
-//    public static List<IOTAddress> discoverDevices()
-//    {
-//        return EspMeshDiscoverUtil.discoverIOTDevices();
-//    }
-//
+    public static List<IOTAddress> discoverDevices()
+    {
+        return EspMeshDiscoverUtil.discoverIOTDevices();
+    }
+    
     /**
      * discover the specific device whether is on the same AP or in the mesh net which root mesh device is on the same
      * AP
@@ -174,11 +174,11 @@ public class EspBaseApiUtil
      * @param bssid the device's bssid
      * @return @see IOTAddress
      */
-//    public static IOTAddress discoverDevice(String bssid)
-//    {
-//        return EspMeshDiscoverUtil.discoverIOTDevice(bssid);
-//    }
-//
+    public static IOTAddress discoverDevice(String bssid)
+    {
+        return EspMeshDiscoverUtil.discoverIOTDevice(bssid);
+    }
+    
     /**
      * 
      * @return whether the wifi is enabled
