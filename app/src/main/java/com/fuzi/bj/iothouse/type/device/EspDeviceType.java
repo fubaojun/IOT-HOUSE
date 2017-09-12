@@ -13,12 +13,13 @@ public enum EspDeviceType
     ROOT(-2, "Root Router", false),
     PLUG(23701, "Plug", true),
     LIGHT(45772, "Light", true),
+    IOTSERVER(45773, "IOTServer", true),
     HUMITURE(12335, "Humiture", false),
     FLAMMABLE(3835, "Flammable Gas", false),
     VOLTAGE(68574, "Voltage", false),
     REMOTE(2355, "Remote", true),
     PLUGS(47446, "Plugs", true);
-    
+
     private final int mSerial;
     
     private final String mString;
@@ -78,6 +79,10 @@ public enum EspDeviceType
         {
             return LIGHT;
         }
+        else if (serial == IOTSERVER.getSerial())
+        {
+            return IOTSERVER;
+        }
         else if (serial == HUMITURE.getSerial())
         {
             return HUMITURE;
@@ -124,6 +129,10 @@ public enum EspDeviceType
         else if (typeEnumString.equals(EspDeviceType.LIGHT.toString()))
         {
             return LIGHT;
+        }
+        else if (typeEnumString.equals(EspDeviceType.IOTSERVER.toString()))
+        {
+            return IOTSERVER;
         }
         else if (typeEnumString.equals(EspDeviceType.HUMITURE.toString()))
         {

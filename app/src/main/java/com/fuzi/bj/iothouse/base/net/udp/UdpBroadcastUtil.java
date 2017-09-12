@@ -1,5 +1,7 @@
 package com.fuzi.bj.iothouse.base.net.udp;
 
+import android.util.Log;
+
 import com.fuzi.bj.iothouse.type.device.EspDeviceType;
 import com.fuzi.bj.iothouse.type.net.IOTAddress;
 
@@ -21,9 +23,10 @@ public class UdpBroadcastUtil
 {
     
     //private static final Logger log = Logger.getLogger(UdpBroadcastUtil.class);
-    
+
     private static final String data = "Are You Espressif IOT Smart Device?";
-    
+    private static final String TAG = "FIND";
+
     private static final int IOT_DEVICE_PORT = 1025;
     
     private static final int SO_TIMEOUT = 3000;
@@ -125,7 +128,7 @@ public class UdpBroadcastUtil
             socket.setSoTimeout(SO_TIMEOUT);
             // broadcast content
             pack = new DatagramPacket(realData.getBytes(), realData.length(), broadcastAddress, IOT_DEVICE_PORT);
-            //log.debug(Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid + "]): socket send");
+            Log.i(TAG, Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid + "]): socket send");
             socket.send(pack);
             pack.setData(buf_receive);
             long start = System.currentTimeMillis();
@@ -135,9 +138,9 @@ public class UdpBroadcastUtil
             {
                 socket.receive(pack);
                 long consume = System.currentTimeMillis() - start;
-                //log.error("udp receivce cost: " + consume + " ms");
-                //log.debug(Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid
-                //    + "]): one socket received");
+                Log.i(TAG, "udp receivce cost: " + consume + " ms");
+                Log.i(TAG, Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid
+                    + "]): one socket received");
                 receiveContent = new String(pack.getData(), pack.getOffset(), pack.getLength());
                 
                 if (UdpDataParser.isValid(receiveContent))
@@ -146,14 +149,14 @@ public class UdpBroadcastUtil
                     EspDeviceType deviceType = EspDeviceType.getEspTypeEnumByString(deviceTypeStr);
                     if (deviceType == null || !deviceType.isLocalSupport())
                     {
-//                        log.warn(Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid
-//                            + "]): type is null or the type of the device don't support local mode.");
+                        Log.i(TAG, Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid
+                            + "]): type is null or the type of the device don't support local mode.");
                     }
                     else
                     {
                         hostname = UdpDataParser.filterIpAddress(receiveContent);
-//                        log.debug(Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid
-//                            + "]): hostname=" + hostname);
+                        Log.i(TAG, Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid
+                            + "]): hostname=" + hostname);
                         if (hostname.equals("0.0.0.0"))
                         {
 //                            log.warn(Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid
@@ -163,8 +166,8 @@ public class UdpBroadcastUtil
                         responseAddr = InetAddress.getByName(hostname);
 //                        log.debug(receiveContent);
                         responseBSSID = UdpDataParser.filterBssid(receiveContent);
-//                        log.info(Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid
-//                            + "]): responseAddr = " + responseAddr + ",responseBSSID = " + responseBSSID);
+                        Log.i(TAG, Thread.currentThread().toString() + "##__discoverDevices(bssid=[" + bssid
+                            + "]): responseAddr = " + responseAddr + ",responseBSSID = " + responseBSSID);
                         isMesh = UdpDataParser.isMesh(receiveContent);
                         // add one response to the response list
                         IOTAddress iotAddress = new IOTAddress(responseBSSID, responseAddr, isMesh);

@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
+import static java.lang.Thread.sleep;
+
 public class MainActivity extends AppCompatActivity {
 
     protected List<IEspDevice> mAllDeviceList;
@@ -68,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
                 //这样不行，在UDP线程还没有完成的时候，界面已经刷新了，这一定获取不到正确的值。
                 //第一次点击的时候，还没刷出来，等一段时间第二次点击刷新的时候 会把上一次的结果
                 //更新出来，说明 UDP是可以获取到的。 下一步确认线程间是如何传递这个数据的。
+//                try {
+//                    sleep(3000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 mRootDeviceNameList.clear();
                 mRootDeviceNameList.add("empty1--"+i++);//for test listview
                 mRootDeviceNameList.add("empty2--"+i);
