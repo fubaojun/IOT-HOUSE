@@ -70,24 +70,34 @@ public class MainActivity extends AppCompatActivity {
                 //这样不行，在UDP线程还没有完成的时候，界面已经刷新了，这一定获取不到正确的值。
                 //第一次点击的时候，还没刷出来，等一段时间第二次点击刷新的时候 会把上一次的结果
                 //更新出来，说明 UDP是可以获取到的。 下一步确认线程间是如何传递这个数据的。
-//                try {
-//                    sleep(3000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-                mRootDeviceNameList.clear();
-                mRootDeviceNameList.add("empty1--"+i++);//for test listview
-                mRootDeviceNameList.add("empty2--"+i);
-                if (mRootDeviceList != null) {
-                    for (IOTAddress iotAddress : mRootDeviceList) {
-                        mRootDeviceNameList.add(iotAddress.toString());
+                // 更新listview UI线程
+                new Thread(){
+                    @Override
+                    public void run() {
+                        do {
+                            //sleep for the UDP
+                            try {
+                                sleep(3000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            //prepare the list data
+                            mRootDeviceNameList.clear();
+                            mRootDeviceNameList.add("empty1--"+i++);//for test listview
+                            mRootDeviceNameList.add("empty2--"+i);
+                            if (mRootDeviceList != null) {
+                                for (IOTAddress iotAddress : mRootDeviceList) {
+                                    mRootDeviceNameList.add(iotAddress.toString());
+                                }
+                            }
+                            ArrayAdapter<String> adapter;
+                            adapter = new ArrayAdapter<String>(
+                                    MainActivity.this, android.R.layout.simple_list_item_1, mRootDeviceNameList
+                            );
+                            mDeviceListView.setAdapter(adapter);
+                        }while (false);
                     }
-                }
-                ArrayAdapter<String> adapter;
-                adapter = new ArrayAdapter<String>(
-                        MainActivity.this, android.R.layout.simple_list_item_1, mRootDeviceNameList
-                );
-                mDeviceListView.setAdapter(adapter);
+                }.start();
 
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();

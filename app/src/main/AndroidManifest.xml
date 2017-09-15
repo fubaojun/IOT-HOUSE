@@ -28,6 +28,10 @@
             android:name="com.iothouse.thirdparty.mjpeg_viewer.MjpegViewActivity"
             android:label="@string/iot_camera_name" >
         </activity>
+        <activity
+            android:name="com.iothouse.iot_camera.IOTCameraActivity"
+            android:label="@string/iot_camera_name" >
+        </activity>
     </application>
 
 </manifest>
