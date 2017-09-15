@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.iothouse.iot_camera.mjpeg_viewer.MjpegViewActivity"
+            android:name="com.iothouse.thirdparty.mjpeg_viewer.MjpegViewActivity"
             android:label="@string/iot_camera_name" >
         </activity>
     </application>

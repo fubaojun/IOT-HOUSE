@@ -1,5 +1,5 @@
 
-package com.iothouse.iot_camera.mjpeg_viewer.rtrk.mjpeg;
+package com.iothouse.thirdparty.mjpeg_viewer.rtrk.mjpeg;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;

@@ -1,5 +1,5 @@
 
-package com.iothouse.iot_camera.mjpeg_viewer;
+package com.iothouse.thirdparty.mjpeg_viewer;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.fuzi.bj.iothouse.R;
-import com.iothouse.iot_camera.mjpeg_viewer.rtrk.mjpeg.MjpegUtils;
-import com.iothouse.iot_camera.mjpeg_viewer.rtrk.mjpeg.MjpegView;
+import com.iothouse.thirdparty.mjpeg_viewer.rtrk.mjpeg.MjpegUtils;
+import com.iothouse.thirdparty.mjpeg_viewer.rtrk.mjpeg.MjpegView;
 
 public class MjpegViewActivity extends Activity {
     private static final String SAMPLE_URL = "http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
