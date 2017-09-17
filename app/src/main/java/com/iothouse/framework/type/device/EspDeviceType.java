@@ -14,6 +14,7 @@ public enum EspDeviceType
     PLUG(23701, "Plug", true),
     LIGHT(45772, "Light", true),
     IOTSERVER(45773, "IOTServer", true),
+    IOT_CAMERA(45774, "IOT_Camera", true),
     HUMITURE(12335, "Humiture", false),
     FLAMMABLE(3835, "Flammable Gas", false),
     VOLTAGE(68574, "Voltage", false),
@@ -83,6 +84,10 @@ public enum EspDeviceType
         {
             return IOTSERVER;
         }
+        else if (serial == IOT_CAMERA.getSerial())
+        {
+            return IOT_CAMERA;
+        }
         else if (serial == HUMITURE.getSerial())
         {
             return HUMITURE;
@@ -133,6 +138,10 @@ public enum EspDeviceType
         else if (typeEnumString.equals(EspDeviceType.IOTSERVER.toString()))
         {
             return IOTSERVER;
+        }
+        else if (typeEnumString.equals(EspDeviceType.IOT_CAMERA.toString()))
+        {
+            return IOT_CAMERA;
         }
         else if (typeEnumString.equals(EspDeviceType.HUMITURE.toString()))
         {

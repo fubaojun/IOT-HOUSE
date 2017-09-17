@@ -1,4 +1,5 @@
 <resources>
     <string name="iot_camera_name">IOT CAMERA</string>
     <string name="play">Play</string>
+    <string name="stop">Stop</string>
 </resources>

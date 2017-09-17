@@ -34,8 +34,9 @@
 
     <com.iothouse.thirdparty.mjpeg_viewer.rtrk.mjpeg.MjpegView
         android:id="@+id/mjpegView"
-        android:layout_width="352dip"
-        android:layout_height="288dip"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_width="1280px"
+        android:layout_height="720px"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/app_icon" />
 
 </LinearLayout>

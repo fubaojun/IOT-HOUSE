@@ -1,40 +1,38 @@
 package com.iothouse.framework;
 
-import android.app.Activity;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.fuzi.bj.iothouse.R;
 import com.iothouse.framework.base.api.EspBaseApiUtil;
 import com.iothouse.framework.base.net.udp.UdpBroadcastUtil;
-import com.iothouse.framework.device.IEspDevice;
 import com.iothouse.framework.type.net.IOTAddress;
-import com.iothouse.framework.ui.view.DeviceAdapter;
+import com.iothouse.thirdparty.mjpeg_viewer.MjpegViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.Vector;
 
-import static java.lang.Thread.sleep;
+import static com.iothouse.framework.type.device.EspDeviceType.IOT_CAMERA;
 
 public class MainActivity extends AppCompatActivity {
+    //MSG handler CODE
+    private static final int MSG_CLEAR_DEVICE_LIST = 1000;
+    private static final int MSG_UPDATE_DEVICE_LIST = 1001;
 
-    protected List<IEspDevice> mAllDeviceList;
-    private DeviceAdapter mDeviceAdapter;
     protected ListView mDeviceListView;
-    private Set<String> mNewDevicesSet;
-    private int i = 1;
 
     List<IOTAddress> mRootDeviceList = null;
     List<String> mRootDeviceNameList = new ArrayList<String>();
@@ -47,18 +45,39 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mDeviceListView = (ListView)findViewById(R.id.devices_list);
-        mAllDeviceList = new Vector<IEspDevice>();
-//        updateDeviceList();
-        mDeviceAdapter = new EspDeviceAdapter(this, mAllDeviceList);
-//        mDeviceListView.setAdapter(mDeviceAdapter);
-//        mDeviceListView.setOnRefreshListener(this);
-//        mDeviceListView.setOnItemClickListener(this);
-//        mDeviceListView.getRefreshableView().setOnItemLongClickListener(this);
+        mDeviceListView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = mRootDeviceNameList.get(position).toString();
+                if (name.contains(IOT_CAMERA.toString())) {
+                    IOTAddress iotAddress = mRootDeviceList.get(position);
+                    Intent intent = new Intent();
+                    //设置Intent的class属性，跳转到SecondActivity
+                    intent.setClass(MainActivity.this, MjpegViewActivity.class);
+                    //为intent添加额外的信息
+                    intent.putExtra("MAC_ADDR", iotAddress.getBSSID());
+                    intent.putExtra("IP_ADDR", ""+iotAddress.getInetAddress().getHostAddress());
+                    intent.putExtra("PORT", "80");
+                    //启动Activity
+                    startActivity(intent);
+                }
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 更新listview UI线程
+                if (mRootDeviceList != null) {
+                    mRootDeviceList.clear();
+                }
+                Message msg = Message.obtain();
+                msg.arg1 = MSG_CLEAR_DEVICE_LIST;
+                updateListHandler.sendMessage(msg);
+                Message msg1 = Message.obtain();
+                msg1.arg1 = MSG_UPDATE_DEVICE_LIST;
+                updateListHandler.sendMessageDelayed(msg1, 3000);
                 EspBaseApiUtil.submit(new Runnable()
                 {
                     @Override
@@ -67,43 +86,49 @@ public class MainActivity extends AppCompatActivity {
                         mRootDeviceList = UdpBroadcastUtil.discoverIOTDevices();
                     }
                 });
-                //这样不行，在UDP线程还没有完成的时候，界面已经刷新了，这一定获取不到正确的值。
-                //第一次点击的时候，还没刷出来，等一段时间第二次点击刷新的时候 会把上一次的结果
-                //更新出来，说明 UDP是可以获取到的。 下一步确认线程间是如何传递这个数据的。
-                // 更新listview UI线程
-                new Thread(){
-                    @Override
-                    public void run() {
-                        do {
-                            //sleep for the UDP
-                            try {
-                                sleep(3000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            //prepare the list data
-                            mRootDeviceNameList.clear();
-                            mRootDeviceNameList.add("empty1--"+i++);//for test listview
-                            mRootDeviceNameList.add("empty2--"+i);
-                            if (mRootDeviceList != null) {
-                                for (IOTAddress iotAddress : mRootDeviceList) {
-                                    mRootDeviceNameList.add(iotAddress.toString());
-                                }
-                            }
-                            ArrayAdapter<String> adapter;
-                            adapter = new ArrayAdapter<String>(
-                                    MainActivity.this, android.R.layout.simple_list_item_1, mRootDeviceNameList
-                            );
-                            mDeviceListView.setAdapter(adapter);
-                        }while (false);
-                    }
-                }.start();
-
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                //提示等待3秒。
+                Snackbar.make(view, getString(R.string.search_prompt), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
     }
+
+    private Handler updateListHandler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            //TODO
+            ArrayAdapter<String> adapter = null;
+            switch (msg.arg1){
+                case MSG_CLEAR_DEVICE_LIST:
+                    //prepare the list data
+                    mRootDeviceNameList.clear();
+                    mRootDeviceNameList.add("Device list cleared!");
+                    adapter = new ArrayAdapter<String>(
+                            MainActivity.this, android.R.layout.simple_list_item_1, mRootDeviceNameList
+                    );
+                    break;
+                case MSG_UPDATE_DEVICE_LIST:
+                    //prepare the list data
+                    mRootDeviceNameList.clear();
+                    if (mRootDeviceList != null) {
+                        for (IOTAddress iotAddress : mRootDeviceList) {
+                            String str = ""+iotAddress.getDeviceTypeEnum()+" "+iotAddress.getBSSID()
+                                    +" "+iotAddress.getInetAddress().getHostAddress();
+                            mRootDeviceNameList.add(str);
+                        }
+                    }
+                    mRootDeviceNameList.add("Device list Updated Already!");//for test listview add after the REAL device
+                    adapter = new ArrayAdapter<String>(
+                            MainActivity.this, android.R.layout.simple_list_item_1, mRootDeviceNameList
+                    );
+                    break;
+                default:
+                        break;
+            }
+            mDeviceListView.setAdapter(adapter);
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -126,33 +151,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    private class EspDeviceAdapter extends DeviceAdapter
-    {
-
-        public EspDeviceAdapter(Activity activity, List<IEspDevice> list)
-        {
-            super(activity, list);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent)
-        {
-            convertView = super.getView(position, convertView, parent);
-
-            IEspDevice device = (IEspDevice)convertView.getTag();
-
-            TextView contentTV = (TextView)convertView.findViewById(R.id.content_text);
-            contentTV.setTextColor(Color.RED);
-            contentTV.setText("NEW");
-            boolean newActivated = mNewDevicesSet.contains(device.getKey());
-            contentTV.setVisibility(newActivated ? View.VISIBLE : View.GONE);
-
-            return convertView;
-        }
-
-    }
-
 
 }
 

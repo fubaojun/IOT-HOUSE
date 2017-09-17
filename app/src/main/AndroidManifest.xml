@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -26,7 +26,9 @@
         </activity>
         <activity
             android:name="com.iothouse.thirdparty.mjpeg_viewer.MjpegViewActivity"
-            android:label="@string/iot_camera_name" >
+            android:label="@string/iot_camera_name"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="sensor">
         </activity>
         <activity
             android:name="com.iothouse.iot_camera.IOTCameraActivity"

@@ -24,12 +24,12 @@ public class UdpBroadcastUtil
     
     //private static final Logger log = Logger.getLogger(UdpBroadcastUtil.class);
 
-    private static final String data = "Are You Espressif IOT Smart Device?";
+    private static final String data = "Are You Smart IOT House Device?";
     private static final String TAG = "FIND";
 
     private static final int IOT_DEVICE_PORT = 1025;
     
-    private static final int SO_TIMEOUT = 3000;
+    private static final int SO_TIMEOUT = 2000;
     
     private static final int RECEIVE_LEN = 64;
     
