@@ -2,7 +2,7 @@ package com.iothouse.framework.command.device.common;
 
 import com.iothouse.framework.command.IEspCommandInternet;
 import com.iothouse.framework.command.device.IEspCommandActivated;
-//import com.fuzi.bj.iothouse.group.IEspGroup;
+//import com.iothouse.group.IEspGroup;
 
 
 public interface IEspCommandDeviceSynchronizeInternet extends IEspCommandActivated, IEspCommandInternet

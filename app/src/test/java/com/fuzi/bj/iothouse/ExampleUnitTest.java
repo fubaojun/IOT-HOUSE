@@ -1,4 +1,4 @@
-package com.fuzi.bj.iothouse;
+package com.iothouse;
 
 import org.junit.Test;
 

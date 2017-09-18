@@ -1,7 +1,7 @@
 package com.iothouse.framework.command.device.light;
 
 import com.iothouse.framework.base.api.EspBaseApiUtil;
-//import com.fuzi.bj.iothouse.command.device.plug.EspCommandPlugGetStatusInternet;
+//import com.iothouse.command.device.plug.EspCommandPlugGetStatusInternet;
 import com.iothouse.framework.type.device.status.EspStatusLight;
 import com.iothouse.framework.type.device.status.IEspStatusLight;
 import com.iothouse.framework.type.net.HeaderPair;

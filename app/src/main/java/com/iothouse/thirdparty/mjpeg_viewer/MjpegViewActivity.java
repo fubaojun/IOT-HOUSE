@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.fuzi.bj.iothouse.R;
+import com.iothouse.R;
 import com.iothouse.thirdparty.mjpeg_viewer.rtrk.mjpeg.MjpegUtils;
 import com.iothouse.thirdparty.mjpeg_viewer.rtrk.mjpeg.MjpegView;
 

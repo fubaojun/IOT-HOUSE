@@ -1,11 +1,11 @@
 package com.iothouse.framework.command.device.common;
 
 import com.iothouse.framework.base.api.EspBaseApiUtil;
-//import com.fuzi.bj.iothouse.group.IEspGroup;
-//import com.fuzi.bj.iothouse.group.builder.BEspGroup;
+//import com.iothouse.group.IEspGroup;
+//import com.iothouse.group.builder.BEspGroup;
 import com.iothouse.framework.type.device.EspDeviceType;
 import com.iothouse.framework.type.net.HeaderPair;
-//import com.fuzi.bj.iothouse.user.builder.BEspUser;
+//import com.iothouse.user.builder.BEspUser;
 import com.iothouse.framework.util.TimeUtil;
 
 import org.apache.http.HttpStatus;

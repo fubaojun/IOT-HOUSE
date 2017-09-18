@@ -9,7 +9,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fuzi.bj.iothouse.R;
+import com.iothouse.R;
 import com.iothouse.framework.device.IEspDevice;
 import com.iothouse.framework.type.device.IEspDeviceState;
 

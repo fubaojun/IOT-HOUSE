@@ -1,4 +1,4 @@
-package com.fuzi.bj.iothouse;
+package com.iothouse;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.fuzi.bj.iothouse", appContext.getPackageName());
+        assertEquals("com.iothouse", appContext.getPackageName());
     }
 }

@@ -2,8 +2,8 @@ package com.iothouse.framework.base.net.rest2;
 
 import com.iothouse.framework.type.device.EspDeviceType;
 import com.iothouse.framework.type.net.IOTAddress;
-//import com.fuzi.bj.iothouse.user.IEspUser;
-//import com.fuzi.bj.iothouse.user.builder.BEspUser;
+//import com.iothouse.user.IEspUser;
+//import com.iothouse.user.builder.BEspUser;
 
 //import org.apache.log4j.Logger;
 import org.json.JSONArray;

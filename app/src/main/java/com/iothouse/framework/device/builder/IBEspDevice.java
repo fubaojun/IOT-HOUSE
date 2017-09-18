@@ -2,7 +2,7 @@ package com.iothouse.framework.device.builder;
 
 import com.iothouse.framework.device.IEspDevice;
 import com.iothouse.framework.object.IEspObjectBuilder;
-//import com.fuzi.bj.iothouse.object.db.IDeviceDB;
+//import com.iothouse.object.db.IDeviceDB;
 
 public interface IBEspDevice extends IEspObjectBuilder
 {

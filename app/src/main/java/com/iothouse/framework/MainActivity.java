@@ -16,7 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.fuzi.bj.iothouse.R;
+import com.iothouse.R;
 import com.iothouse.framework.base.api.EspBaseApiUtil;
 import com.iothouse.framework.base.net.udp.UdpBroadcastUtil;
 import com.iothouse.framework.type.net.IOTAddress;

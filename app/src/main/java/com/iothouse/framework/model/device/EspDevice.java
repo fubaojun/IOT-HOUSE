@@ -2,17 +2,17 @@ package com.iothouse.framework.model.device;
 
 import android.text.TextUtils;
 
-//import com.fuzi.bj.iothouse.action.device.common.upgrade.EspDeviceUpgradeParser;
-//import com.fuzi.bj.iothouse.action.device.common.upgrade.IEspDeviceUpgradeInfo;
-//import com.fuzi.bj.iothouse.action.device.common.upgrade.IEspDeviceUpgradeParser;
-//import com.fuzi.bj.iothouse.adt.tree.IEspDeviceTreeElement;
-//import com.fuzi.bj.iothouse.db.IOTDeviceDBManager;
+//import com.iothouse.action.device.common.upgrade.EspDeviceUpgradeParser;
+//import com.iothouse.action.device.common.upgrade.IEspDeviceUpgradeInfo;
+//import com.iothouse.action.device.common.upgrade.IEspDeviceUpgradeParser;
+//import com.iothouse.adt.tree.IEspDeviceTreeElement;
+//import com.iothouse.db.IOTDeviceDBManager;
 import com.iothouse.framework.device.IEspDevice;
-//import com.fuzi.bj.iothouse.model.adt.tree.EspDeviceTreeElement;
+//import com.iothouse.model.adt.tree.EspDeviceTreeElement;
 import com.iothouse.framework.type.device.EspDeviceType;
 import com.iothouse.framework.type.device.IEspDeviceState;
 import com.iothouse.framework.type.device.state.EspDeviceState;
-//import com.fuzi.bj.iothouse.type.device.status.IEspStatusEspnow;
+//import com.iothouse.type.device.status.IEspStatusEspnow;
 import com.iothouse.framework.type.device.timer.EspDeviceTimer;
 
 import java.net.InetAddress;

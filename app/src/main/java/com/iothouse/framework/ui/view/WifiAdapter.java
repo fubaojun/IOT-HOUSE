@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-//import com.fuzi.bj.iothouse.user.builder.BEspUser;
+//import com.iothouse.user.builder.BEspUser;
 
 import java.util.HashSet;
 import java.util.List;

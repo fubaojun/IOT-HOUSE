@@ -1,7 +1,7 @@
 package com.iothouse.framework.command.device.light;
 
-//import com.fuzi.bj.iothouse.type.device.status.EspStatusEspnow;
-//import com.fuzi.bj.iothouse.type.device.status.IEspStatusEspnow;
+//import com.iothouse.type.device.status.EspStatusEspnow;
+//import com.iothouse.type.device.status.IEspStatusEspnow;
 
 
 public class EspCommandLightGetEspnowInternet implements IEspCommandLightGetEspnowInternet

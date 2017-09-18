@@ -1,10 +1,10 @@
 package com.iothouse.framework.device;
 
-//import com.fuzi.bj.iothouse.adt.tree.IEspDeviceTreeElement;
+//import com.iothouse.adt.tree.IEspDeviceTreeElement;
 import com.iothouse.framework.object.IEspObject;
 import com.iothouse.framework.type.device.EspDeviceType;
 import com.iothouse.framework.type.device.IEspDeviceState;
-//import com.fuzi.bj.iothouse.type.device.status.IEspStatusEspnow;
+//import com.iothouse.type.device.status.IEspStatusEspnow;
 import com.iothouse.framework.type.device.timer.EspDeviceTimer;
 
 import java.net.InetAddress;

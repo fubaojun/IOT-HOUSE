@@ -1,11 +1,11 @@
 package com.iothouse.framework.base.net.rest2;
 
 import com.iothouse.framework.base.api.EspBaseApiUtil;
-//import com.fuzi.bj.iothouse.base.net.mdns.MdnsDiscoverUtil;
+//import com.iothouse.base.net.mdns.MdnsDiscoverUtil;
 import com.iothouse.framework.base.net.udp.UdpBroadcastUtil;
 import com.iothouse.framework.type.net.IOTAddress;
-//import com.fuzi.bj.iothouse.user.IEspUser;
-//import com.fuzi.bj.iothouse.user.builder.BEspUser;
+//import com.iothouse.user.IEspUser;
+//import com.iothouse.user.builder.BEspUser;
 
 //import org.apache.log4j.Logger;
 

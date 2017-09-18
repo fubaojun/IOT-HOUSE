@@ -9,11 +9,11 @@ import com.iothouse.framework.base.net.rest2.EspMeshDiscoverUtil;
 import com.iothouse.framework.base.net.wifi.WifiAdmin;
 import com.iothouse.framework.base.threadpool.CachedThreadPool;
 import com.iothouse.framework.base.time.EspTimeManager;
-//import com.fuzi.bj.iothouse.base.upgrade.UpgradeAdministrator;
+//import com.iothouse.base.upgrade.UpgradeAdministrator;
 import com.iothouse.framework.type.net.HeaderPair;
 import com.iothouse.framework.type.net.IOTAddress;
 import com.iothouse.framework.type.net.WifiCipherType;
-//import com.fuzi.bj.iothouse.type.upgrade.EspUpgradeApkResult;
+//import com.iothouse.type.upgrade.EspUpgradeApkResult;
 
 import org.json.JSONObject;
 
