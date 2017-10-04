@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -69,9 +70,11 @@ public class MjpegViewActivity extends Activity {
                         .getHTTPInputStream(mUrlText.getText().toString()));
             }
         }).start();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
     //停止播放
     private void onStopPlayback() {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mMjpegView.stopPlayback();
 
     }
